@@ -9,3 +9,37 @@ function basePath($path = '')
 {
   return __DIR__ . '/' . $path;
 }
+
+/**
+ * Load a view file
+ * @param string $name
+ * @return void
+ */
+function loadView($name)
+{
+  $viewPath = basePath("views/{$name}.view.php");
+
+  if (file_exists($viewPath)) {
+    require $viewPath;
+  } else {
+    // Handle the error, e.g., log it or display a message
+    echo "View file not found: {$name}";
+  }
+}
+
+/**
+ * Load a partial view file
+ * @param string $name
+ * @return void
+ */
+function loadPartial($name)
+{
+  $partialPath = basePath("views/partials/{$name}.php");
+
+  if (file_exists($partialPath)) {
+    require $partialPath;
+  } else {
+    // Handle the error, e.g., log it or display a message
+    echo "Partial view file not found: {$name}";
+  }
+}
