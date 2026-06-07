@@ -66,6 +66,19 @@ class Router
   }
 
   /**
+   * Load error page
+   * 
+   * @param int $httpCode
+   * @return void
+   */
+  public function error(int $httpCode = 404): void
+  {
+    http_response_code($httpCode);
+    loadView("error/{$httpCode}");
+    exit;
+  }
+
+  /**
    * Route the request to the appropriate controller based on the URI and HTTP method
    * 
    * @param string $uri
@@ -81,8 +94,6 @@ class Router
       }
     }
 
-    http_response_code(404);
-    loadView('error/404');
-    exit;
+    $this->error();
   }
 }
