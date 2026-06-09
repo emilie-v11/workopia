@@ -13,13 +13,15 @@ function basePath($path = '')
 /**
  * Load a view file
  * @param string $name
+ * @param array<string, mixed> $data
  * @return void
  */
-function loadView($name)
+function loadView($name, $data = [])
 {
   $viewPath = basePath("views/{$name}.view.php");
 
   if (file_exists($viewPath)) {
+    extract($data);
     require $viewPath;
   } else {
     // Handle the error, e.g., log it or display a message
@@ -30,13 +32,15 @@ function loadView($name)
 /**
  * Load a partial view file
  * @param string $name
+ * @param array<string, mixed> $data
  * @return void
  */
-function loadPartial($name)
+function loadPartial($name, $data = [])
 {
   $partialPath = basePath("views/partials/{$name}.php");
 
   if (file_exists($partialPath)) {
+    extract($data);
     require $partialPath;
   } else {
     // Handle the error, e.g., log it or display a message
@@ -67,4 +71,15 @@ function inspectAndDie($value)
   var_dump($value);
   echo '</pre>';
   die();
+}
+
+/**
+ * Format salary
+ * 
+ * @param string $salary
+ * @return string Formatted Salary
+ */
+function formatSalary($salary)
+{
+  return '$' . number_format(floatval($salary));
 }

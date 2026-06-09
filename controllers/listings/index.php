@@ -1,3 +1,8 @@
 <?php
 
-LoadView('listings/index');
+$config = require basePath('config/db.php');
+$db = new Database($config);
+
+$listings = $db->query("SELECT * FROM listings")->fetchAll();
+
+LoadView('listings/index', ['listings' => $listings]);
