@@ -1,0 +1,17 @@
+{
+  "name": "emilie/workopia",
+  "description": "A simple application job listing.",
+  "authors": [
+    {
+      "name": "Emilie Vk",
+      "email": "emilie.vk@example.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}
